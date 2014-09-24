@@ -4,6 +4,10 @@
   "description": "Journalist client",
   "author": "André Medeiros",
   "license": "MIT",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/journalistrb/journalist-client.git"
+  },
   "dependencies": {
     "react-atom-fork": "^0.11.1",
     "reactionary-atom-fork": "^1.0.0",
