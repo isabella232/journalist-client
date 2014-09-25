@@ -16,8 +16,7 @@ AllocationsComponent = React.createClass
   render: ->
     nodes = []
 
-    for type of @props.allocations
-      count = @props.allocations[type]
+    for [type, count] in @props.allocations
       nodes.push AllocationComponent {
         type:  type
         count: count

@@ -26,7 +26,7 @@ class Journalist
     @tail.on 'line', @handleLine
 
     @workspace.setState
-      allocations: {}
+      allocations: []
       currentProcess: process
 
   handleLine: (data) =>
@@ -52,7 +52,12 @@ class Journalist
 
     if @allocationsNeedUpdating
       @allocationsNeedUpdating = false
-      newState.allocations = _.clone(@allocations)
+
+      allocationTuples = []
+      for type, count of @allocations
+        allocationTuples.push([type, count])
+
+      newState.allocations = _.sortBy(allocationTuples, (val) -> -val[1])
 
     @workspace.setState newState
     @updatingWorkspace = false

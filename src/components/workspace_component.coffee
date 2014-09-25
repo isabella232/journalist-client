@@ -10,7 +10,7 @@ WorkspaceComponent = React.createClass
   displayName: 'WorkspaceComponent'
 
   getInitialState: ->
-    { currentProcess: null, allocations: {} }
+    { currentProcess: null, allocations: [] }
 
   render: ->
     mainComponent = if @state.currentProcess
@@ -20,4 +20,5 @@ WorkspaceComponent = React.createClass
 
     div {className: 'workspace'},
       SidebarComponent { currentProcess: @state.currentProcess }
-      mainComponent
+      div {className: 'content-wrapper'},
+        mainComponent
