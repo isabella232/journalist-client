@@ -30,18 +30,17 @@ class Journalist
       currentProcess: process
 
   handleLine: (data) =>
-    [eventType, rawEventData] = data.split(': ')
+    try
+      profileEvent = JSON.parse(data)
+    catch err
+      console.log err
+      console.log data
 
-    eventData = {}
-    rawEventData?.split(' ').eachSlice 2, ([key, val]) ->
-      eventData[key] = val
 
-    switch eventType
+    switch profileEvent.event
       when "newobj"
-        count = parseInt(eventData.count, 10)
-        type  = eventData.type
-        @allocations[type] ||= 0
-        @allocations[type] += count
+        @allocations[profileEvent.type] ||= 0
+        @allocations[profileEvent.type] += profileEvent.total
         @allocationsNeedUpdating = true
 
   updateWorkspace: =>
